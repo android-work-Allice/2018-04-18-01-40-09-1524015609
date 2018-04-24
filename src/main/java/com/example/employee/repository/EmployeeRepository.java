@@ -16,7 +16,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     //1.查询名字是*的第一个employee
     Employee findByName(String name);
     //2.找出Employee表中第一个姓名包含`*`字符并且薪资大于*的雇员个人信息
-    Employee findFirstByNameLike(String character);
+    Employee findFirstByNameLikeAndSalaryIsGreaterThan(String character,Integer salary);
     //3.找出一个薪资最高且公司ID是*的雇员以及该雇员的姓名
 
     @Query("select e.name from Employee e where e.salary=(select max(t.salary) from Employee t where t.companyId=?1)")
